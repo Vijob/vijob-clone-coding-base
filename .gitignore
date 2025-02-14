@@ -1,2 +1,6 @@
 .DS_Store
 Thumbs.db
+*storybook.log
+.next
+/node_modules
+.idea
