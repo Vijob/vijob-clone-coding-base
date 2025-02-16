@@ -4,3 +4,5 @@ Thumbs.db
 .next
 /node_modules
 .idea
+.env.development
+.env.production
