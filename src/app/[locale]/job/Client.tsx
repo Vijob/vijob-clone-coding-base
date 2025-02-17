@@ -17,7 +17,7 @@ import EndOfList from '@/components/job/EndOfList';
  * Home tab client component
  * @constructor
  */
-export default function JobClient(): React.JSX.Element {
+export default function Client(): React.JSX.Element {
   const params: RouteParams = useParams<RouteParams>();
   const locale: string = params.locale;
   const [isDropdownOpen, setIsDropdownOpen]: UseState<boolean> = useState<boolean>(false);

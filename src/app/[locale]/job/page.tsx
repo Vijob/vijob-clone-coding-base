@@ -1,10 +1,10 @@
 import React from 'react';
-import JobClient from '@/app/[locale]/job/JobClient';
+import Client from '@/app/[locale]/job/Client';
 
 /**
  * Home tab server component
  * @constructor
  */
 export default async function Page(): Promise<React.JSX.Element> {
-  return <JobClient />;
+  return <Client />;
 }
