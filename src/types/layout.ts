@@ -4,3 +4,7 @@ export interface FooterMenu {
   activeImgURL: string;
   tabName: string;
 }
+
+export interface FooterProps {
+  footerMenuList: FooterMenu[];
+}

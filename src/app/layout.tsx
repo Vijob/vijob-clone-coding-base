@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import '@/app/globals.css';
 import Footer from '@/components/layout/Footer';
+import { footerMenuList } from '@/data/footerMenu';
 
 export const metadata: Metadata = {
   title: 'vijob-clone-coding',
@@ -24,7 +25,7 @@ export default function RootLayout({
             <div className="flex-grow overflow-y-auto">
               <div className="flex flex-col relative w-full h-full overflow-y-auto">{children}</div>
             </div>
-            <Footer />
+            <Footer footerMenuList={footerMenuList} />
           </div>
         </div>
       </body>

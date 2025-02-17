@@ -5,10 +5,9 @@ import React from 'react';
 import { RouteParams } from '@/types/common';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Button } from '@/components/ui/button';
-import { FooterMenu } from '@/types/layout';
-import { footerMenuArray } from '@/data/footerMenu';
+import { FooterMenu, FooterProps } from '@/types/layout';
 
-export default function Footer(): React.JSX.Element {
+export default function Footer({ footerMenuList }: FooterProps): React.JSX.Element {
   const router: AppRouterInstance = useRouter();
   const pathname: string = usePathname();
   const params: RouteParams = useParams<RouteParams>();
@@ -16,7 +15,7 @@ export default function Footer(): React.JSX.Element {
 
   return (
     <div className="relative bottom-0 left-0 w-full bg-primary-bg border-t border-t-[#C9C8C8] text-white py-4 px-6 flex justify-around items-center z-[1]">
-      {footerMenuArray.map((footerMenu: FooterMenu): React.JSX.Element => {
+      {footerMenuList.map((footerMenu: FooterMenu): React.JSX.Element => {
         const currentClickTabPath: string = `/${locale}/${footerMenu.path}`;
         const isActive: boolean = pathname === currentClickTabPath;
 

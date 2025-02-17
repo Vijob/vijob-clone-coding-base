@@ -1,6 +1,6 @@
 import { FooterMenu } from '@/types/layout';
 
-export const footerMenuArray: FooterMenu[] = [
+export const footerMenuList: FooterMenu[] = [
   {
     path: 'job',
     imgURL: '/icons/nav-job.48x48.png',
