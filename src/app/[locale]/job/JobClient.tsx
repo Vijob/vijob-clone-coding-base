@@ -5,16 +5,15 @@ import { useParams } from 'next/navigation';
 import { RouteParams, UseState } from '@/types/common';
 import TopSearch from '@/components/job/TopSearch';
 import Banner from '@/components/job/Banner';
-import Footer from '@/components/layout/Footer';
 import FilterActionBar from '@/components/job/FilterActionBar';
 import HiringInfo from '@/components/job/HiringInfo';
 import List from '@/components/job/List';
 
 /**
- * Home Tab Component
+ * Home tab client component
  * @constructor
  */
-export default function Job(): React.JSX.Element {
+export default function JobClient(): React.JSX.Element {
   const params: RouteParams = useParams<RouteParams>();
   const locale: string = params.locale;
   const [isDropdownOpen, setIsDropdownOpen]: UseState<boolean> = useState<boolean>(false);
@@ -23,7 +22,7 @@ export default function Job(): React.JSX.Element {
   console.log('job', locale);
 
   return (
-    <div className="flex flex-col relative w-full h-full overflow-y-auto">
+    <>
       <div className="absolute top-0 left-0 right-0 bg-opacity-80 backdrop-blur-[20px] z-10">
         <TopSearch
           isSearchOpen={isSearchOpen}
@@ -53,7 +52,6 @@ export default function Job(): React.JSX.Element {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }
