@@ -8,6 +8,10 @@ import Banner from '@/components/job/Banner';
 import FilterActionBar from '@/components/job/FilterActionBar';
 import HiringInfo from '@/components/job/HiringInfo';
 import List from '@/components/job/List';
+import jobSampleData from '@/data/job.sample.json';
+import { BgColors, JobItem, NewJobList } from '@/types/job';
+import { formatWeekDays, getBgColors } from '@/app/[locale]/job/utils';
+import EndOfList from '@/components/job/EndOfList';
 
 /**
  * Home tab client component
@@ -20,6 +24,27 @@ export default function JobClient(): React.JSX.Element {
   const [isSearchOpen, setIsSearchOpen]: UseState<boolean> = useState<boolean>(false);
   const [isHiring, setIsHiring]: UseState<boolean> = useState<boolean>(false);
   console.log('job', locale);
+
+  const jobListData: NewJobList[] = jobSampleData.map((data: JobItem): NewJobList => {
+    const bgColors: BgColors = getBgColors(data.isClosed);
+    const formattedWorkWeekDay: string = formatWeekDays(data.workWeekDays);
+    return {
+      id: data.id,
+      companyName: data.business.name,
+      description: '글로벌 마케터 업무',
+      workWeekDay: `${formattedWorkWeekDay} \n${data.startTime} ~ ${data.endTime}`,
+      payAmount: `시급 ${data.payAmount.toLocaleString()}원`,
+      status: '채용시 마감',
+      isClosed: data.isClosed,
+      classNames: {
+        companyName: `${bgColors.companyName} text-white`,
+        description: `${bgColors.description} text-primary-color`,
+        workWeekDay: `${bgColors.workWeekDay} text-primary-color`,
+        payAmount: `${bgColors.payAmount} text-primary-color ring-[0.5px] ring-inset ring-[#7b7b7b]`,
+        status: `${bgColors.status} text-white`
+      }
+    };
+  });
 
   return (
     <>
@@ -40,15 +65,9 @@ export default function JobClient(): React.JSX.Element {
           <div className="absolute left-0 w-full h-[1px] z-10 top-[216px]"></div>
           <div className="relative w-full h-full overflow-x-hidden overflow-y-auto overscroll-none">
             <div style={{ width: '100%', height: '216px' }}></div>
-
             <HiringInfo isHiring={isHiring} setIsHiring={setIsHiring} />
-
-            <ul className="grid grid-cols-2 gap-[5px] px-4 pt-1">
-              <List />
-            </ul>
-            <div className="flex flex-col justify-between items-center p-8 mb-8">
-              <p className="text-sm text-gray-400 ">마지막 일자리입니다.</p>
-            </div>
+            <List dataList={jobListData} />
+            <EndOfList />
           </div>
         </div>
       </div>
